@@ -2,6 +2,7 @@ package agenziaViaggi.services;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -51,5 +52,28 @@ public class PrenotazioneService {
 	}
 	public List<Prenotazione> findByPacchetto(Pacchetto pack){
 		return this.prenotazioneRepository.findByPacchetto(pack);
+	}
+	public boolean eliminaPrenotazione(Long id) {
+		if(prenotazioneRepository.existsById(id)) {
+			prenotazioneRepository.deleteById(id);
+			return true;
+		}
+		return false;
+	}
+
+	public Prenotazione modificaPrenotazione(Prenotazione pren, Long id) {
+		Optional<Prenotazione> prenotazione = prenotazioneRepository.findById(id);
+			if(prenotazione.isPresent()){
+			Prenotazione pr = prenotazione.get();
+			pr.setConvalida(pren.isConvalida());
+			pr.setNumPartecipanti(pren.getNumPartecipanti());
+			pr.setPacchetto(pren.getPacchetto());
+			pr.setPrezzoFinale(pren.getPrezzoFinale());
+			pr.setUtente(pren.getUtente());
+			prenotazioneRepository.save(pr);
+			
+			return pr;
+		}
+		return null;
 	}
 }
