@@ -35,6 +35,11 @@ public class UtenteController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+    @PostMapping
+    public Utente cliente(@RequestBody UtenteDto dto){
+        return this.utenteService.create(dto)
+    }
+
 
    
 }

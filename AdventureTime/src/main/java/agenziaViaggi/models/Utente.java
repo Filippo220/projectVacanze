@@ -18,17 +18,18 @@ public class Utente {
 @Column(name = "id_utente")
 private long id;
 private String nome, cognome, emailAddress, password;
-private int eta, phoneNumber, promoCounter;
+private int phoneNumber, promoCounter;
 private boolean admin, enabled;
+private LocalDate dataDiNascita;
 	
 public Utente() {}
 
-public Utente(String nome, String cognome, String emailAddress, String password, int eta, int phoneNumber) {
+public Utente(String nome, String cognome, String emailAddress, String password, LocalDate dataDiNascita, int phoneNumber) {
 	this.nome = nome;
 	this.cognome = cognome;
 	this.emailAddress = emailAddress;
 	this.password = password;
-	this.eta = eta;
+	this.dataDiNascita = dataDiNascita;
 	this.phoneNumber = phoneNumber;
 	this.admin = false;
 	this.enabled = true;
@@ -76,12 +77,12 @@ public void changePassword(String password) {
 	this.password = password;
 }
 
-public int getEta() {
-	return eta;
+public LocalDate getDataDiNascita() {
+	return dataDiNascita;
 }
 
-public void setEta(int eta) {
-	this.eta = eta;
+public void setDataDiNascita(LocalDate dataDiNascita) {
+	this.dataDiNascita = dataDiNascita;
 }
 
 public int getPhoneNumber() {
@@ -118,7 +119,7 @@ public void setEnabled(boolean enabled) {
 
 @Override
 public int hashCode() {
-	return Objects.hash(admin, cognome, emailAddress, enabled, eta, id, nome, password, phoneNumber, promoCounter);
+	return Objects.hash(admin, cognome, emailAddress, enabled, dataDiNascita, id, nome, password, phoneNumber, promoCounter);
 }
 
 @Override
@@ -131,7 +132,7 @@ public boolean equals(Object obj) {
 		return false;
 	Utente other = (Utente) obj;
 	return admin == other.admin && Objects.equals(cognome, other.cognome)
-			&& Objects.equals(emailAddress, other.emailAddress) && enabled == other.enabled && eta == other.eta
+			&& Objects.equals(emailAddress, other.emailAddress) && enabled == other.enabled && dataDiNascita == other.dataDiNascita
 			&& id == other.id && Objects.equals(nome, other.nome) && Objects.equals(password, other.password)
 			&& phoneNumber == other.phoneNumber && promoCounter == other.promoCounter;
 }

@@ -35,6 +35,10 @@ public class PacchettoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+    @PostMapping
+    public Pacchetto pacchetto(@RequestBody PacchettoDto dto){
+        return this.pacchettoService.create(dto)
+    }
 }
 
 

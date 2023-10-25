@@ -28,21 +28,9 @@ public class PrenotazioneController {
 
 }
 	  @PostMapping
-	    public PrenotazioneDto createPrenotazione(@RequestBody PrenotazioneDto prenotazioneDto) {
-	        Prenotazione prenotazione = new Prenotazione();
-	        prenotazione.setNumPartecipanti(prenotazioneDto.getNumPartecipanti());
-	        prenotazione.setConvalida(prenotazioneDto.isConvalida());
-	        prenotazione.setPrezzoFinale(prenotazioneDto.getPrezzoFinale());
-
-	        Prenotazione createdPrenotazione = prenotazioneService.create(prenotazione);
-	        
-	        PrenotazioneDto createdPrenotazioneDto = new PrenotazioneDto();
-	        createdPrenotazioneDto.setNumPartecipanti(createdPrenotazione.getNumPartecipanti());
-	        createdPrenotazioneDto.setConvalida(createdPrenotazione.isConvalida());
-	        createdPrenotazioneDto.setPrezzoFinale(createdPrenotazione.getPrezzoFinale());
-
-	        return createdPrenotazioneDto;
-	    }
+    public Prenotazione prenotazione(@RequestBody PrenotazioneDto dto){
+        return this.prenotazioneService.create(dto)
+    }
 	    
 
 

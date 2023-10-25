@@ -25,7 +25,7 @@ import agenziaViaggi.repositories.UtenteRepository;
 			Utente u = new Utente();
 			u.setNome(dto.getNome());
 			u.setCognome(dto.getCognome());
-			u.setEta(dto.getEta());
+			u.setDataDiNascita(dto.getDataDiNascita());
 			u.setEmailAddress(dto.getEmailAddress());
 			u.changePassword(dto.getPassword());
 			u.setPhoneNumber(dto.getPhoneNumber());
