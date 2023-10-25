@@ -2,8 +2,8 @@ package agenziaViaggi.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import agenziaViaggi.dto.PrenotazioneDto;
+import agenziaViaggi.models.Prenotazione;
 
-public interface PrenotazioneRepository extends JpaRepository<PrenotazioneDto, Long>{
+public interface PrenotazioneRepository extends JpaRepository<Prenotazione, Long>{
 
 }

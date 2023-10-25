@@ -29,7 +29,7 @@ public class PrenotazioneService {
 		p.setPacchetto(dto.getPacchetto());
 		p.setNumPartecipanti(dto.getNumPartecipanti());
 		p.setConvalida(dto.isConvalida());
-		p.calcolaPrezzo;
+		p.calcolaPrezzo();
 		return this.prenotazioneRepository.save(p);
 		}
 	public List<Prenotazione> findByUtente(Utente u){
