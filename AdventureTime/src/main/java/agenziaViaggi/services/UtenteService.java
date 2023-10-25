@@ -2,6 +2,7 @@ package agenziaViaggi.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -37,8 +38,32 @@ import agenziaViaggi.repositories.UtenteRepository;
 			return utenteRepository.findAll();
 		}
 
-		public <Optional>Utente findByEmail(String email) {
+		public Utente findByEmail(String email) {
 			return this.utenteRepository.findByEmail(email);
+	}
+	public boolean eliminaUtente(Long id) {
+		if(utenteRepository.existsById(id)) {
+			utenteRepository.deleteById(id);
+			return true;
+		}
+		return false;
+	}
+
+	public Utente modificaUtente(Utente user, Long id) {
+		Optional<Utente> utente = utenteRepository.findById(id);
+			if(utente.isPresent()){
+			Utente u = utente.get();
+			u.setNome(user.getNome());
+			u.setCognome(user.getCognome());
+			u.setDataDiNascita(user.getDataDiNascita());
+			u.setEmailAddress(user.getEmailAddress());
+			u.changePassword(user.getPassword());
+			u.setPhoneNumber(user.getPhoneNumber());
+			utenteRepository.save(u);
+			
+			return u;
+		}
+		return null;
 	}
 }
 

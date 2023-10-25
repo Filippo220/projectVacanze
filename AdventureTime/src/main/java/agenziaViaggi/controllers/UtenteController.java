@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,17 @@ public class UtenteController {
     @PostMapping
     public Utente nuovoUtente(@RequestBody UtenteDto dto){
         return this.utenteService.create(dto);
+    }
+    @DeleteMapping("/elimina/{userId}")
+	String eliminaUtente(@PathVariable Long id) {
+		if(utenteService.eliminaUtente(id) == true){
+            return "Eliminato con successo!";
+        }else{
+            return "Errore";
+        }
+	}
+    public Utente modifiUtente(@RequestBody Utente u, Long id){
+       return this.utenteService.modificaUtente(u, id);
     }
    
 }
