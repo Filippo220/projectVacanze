@@ -32,11 +32,11 @@ public class PrenotazioneService {
 		p.calcolaPrezzo();
 		return this.prenotazioneRepository.save(p);
 		}
-	public List<Prenotazione> findByUtente(Utente u){
+	public List<Prenotazione> findByUtente(Long id){
 		List<Prenotazione> prenotazioni = new ArrayList<>();
 		List<Prenotazione> pren = prenotazioneRepository.findAll();
 		for (Prenotazione p : pren) {
-			if (p.getUtente().equals(u)){
+			if (p.getUtente().getId == id){
 				prenotazioni.add(p);
 			}
 		} return prenotazioni;
