@@ -45,7 +45,7 @@ public class UtenteController {
         return this.utenteService.create(dto);
     }
     @DeleteMapping("/elimina/{idUtente}")
-	String eliminaUtente(@PathVariable Long id) {
+	public String eliminaUtente(@PathVariable Long id) {
 		if(utenteService.eliminaUtente(id) == true){
             return "Eliminato con successo!";
         }else{
