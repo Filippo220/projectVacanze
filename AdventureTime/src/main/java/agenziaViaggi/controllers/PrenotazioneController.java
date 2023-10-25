@@ -25,15 +25,16 @@ public class PrenotazioneController {
 	@GetMapping("/{id}")
 	 public Prenotazione getPrenotazioneById(@PathVariable Long id) {
         return prenotazioneService.findById(id);
-
 }
+	@GetMapping("/utente{id}")
+	 public Prenotazione getPrenotazioneByUtente(@PathVariable Long id) {
+        return prenotazioneService.findByUtente(id);
+	}
+
+
 	  @PostMapping
     public Prenotazione prenotazione(@RequestBody PrenotazioneDto dto){
         return this.prenotazioneService.create(dto)
     }
 	    
-
-
-	
-	
 }
