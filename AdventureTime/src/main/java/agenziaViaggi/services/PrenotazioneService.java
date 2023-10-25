@@ -3,11 +3,16 @@ package agenziaViaggi.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.MatchingStrategy;
+import org.springframework.boot.context.properties.PropertyMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import agenziaViaggi.dto.PrenotazioneDto;
 import agenziaViaggi.models.Pacchetto;
 import agenziaViaggi.models.Prenotazione;
 import agenziaViaggi.models.Utente;
@@ -18,36 +23,35 @@ public class PrenotazioneService {
 
 	@Autowired
 	public PrenotazioneRepository prenotazioneRepository;
+	@Autowired
+	public ModelMapper modelMapper;
+
+	// PropertyMapper map = PropertyMapper.get();
+	//  map.from(UtenteDto.nome).to(Utente.nome);
+
 	
 	public Prenotazione findById(Long id) {
 		return this.prenotazioneRepository.findById(id).orElseThrow(() -> new
 		ResponseStatusException(HttpStatus.NOT_FOUND));
 		}
-	public Prenotazione create(Prenotazione dto) {
+
+	public Prenotazione create(PrenotazioneDto dto) {
+		modelMapper.getConfiguration()
+		.setMatchingStrategy(MatchingStrategies.LOOSE);
 		Prenotazione p = new Prenotazione();
-		p.setUtente(dto.getUtente());
-		p.setPacchetto(dto.getPacchetto());
-		p.setNumPartecipanti(dto.getNumPartecipanti());
-		p.setConvalida(dto.isConvalida());
-		p.calcolaPrezzo();
+		p = modelMapper.map(dto, Prenotazione.class);
+		if(p.getUtente().getPromoCounter() == 10){
+			p.setPrezzoFinale(p.getPrezzoFinale()-p.getUtente().calcolaPromo());
+			p.getUtente().setPromoCounter(0);
+		} else{
+		p.getUtente().prenota();}
 		return this.prenotazioneRepository.save(p);
 		}
-	public List<Prenotazione> findByUtente(Long id){
-		List<Prenotazione> prenotazioni = new ArrayList<>();
-		List<Prenotazione> pren = prenotazioneRepository.findAll();
-		for (Prenotazione p : pren) {
-			if (p.getUtente().getId == id){
-				prenotazioni.add(p);
-			}
-		} return prenotazioni;
+
+	public List<Prenotazione> findByUtente(Utente u){
+		return this.prenotazioneRepository.findByUtente(u);
 	}
 	public List<Prenotazione> findByPacchetto(Pacchetto pack){
-		List<Prenotazione> prenotazioni = new ArrayList<>();
-		List<Prenotazione> pren = prenotazioneRepository.findAll();
-		for (Prenotazione p : pren) {
-			if (p.getPacchetto().equals(pack)){
-				prenotazioni.add(p);
-			}
-		} return prenotazioni;
+		return this.prenotazioneRepository.findByPacchetto(pack);
 	}
 }

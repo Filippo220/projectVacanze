@@ -3,6 +3,8 @@ package agenziaViaggi.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,6 +17,8 @@ import agenziaViaggi.repositories.UtenteRepository;
 
 		@Autowired
 		public UtenteRepository utenteRepository;
+		@Autowired
+		public ModelMapper modelMapper;
 
 		public Utente findById(Long id) {
 		return this.utenteRepository.findById(id).orElseThrow(() -> new
@@ -22,28 +26,19 @@ import agenziaViaggi.repositories.UtenteRepository;
 		}
 		
 		public Utente create(UtenteDto dto) {
-			Utente u = new Utente();
-			u.setNome(dto.getNome());
-			u.setCognome(dto.getCognome());
-			u.setDataDiNascita(dto.getDataDiNascita());
-			u.setEmailAddress(dto.getEmailAddress());
-			u.changePassword(dto.getPassword());
-			u.setPhoneNumber(dto.getPhoneNumber());
-			return this.utenteRepository.save(u);
-			}
+			modelMapper.getConfiguration()
+		.setMatchingStrategy(MatchingStrategies.LOOSE);
+		Utente u = new Utente();
+		u = modelMapper.map(dto, Utente.class);
+		return this.utenteRepository.save(u);
+		}
 
 		public List<Utente> findAll() {
 			return utenteRepository.findAll();
 		}
 
-		public List<Utente> findByCognome(String name) {
-			List<Utente> clienti = new ArrayList<>();
-			List<Utente> a = utenteRepository.findAll();
-			for(Utente u : a) {
-				if (u.getCognome().equals(name))
-					clienti.add(u);
-			}
-			return clienti;
-		}
+		public <Optional>Utente findByEmail(String email) {
+			return this.utenteRepository.findByEmail(email);
 	}
+}
 

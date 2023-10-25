@@ -8,13 +8,13 @@ import agenziaViaggi.models.Utente;
 public class PrenotazioneDto {
 
 	private int numPartecipanti;
-	private Utente utente;
+	private UtenteDto utente;
 	private PacchettoDto pacchetto;
 	private boolean convalida;
 	private double prezzoFinale;
 	public PrenotazioneDto() {
 	}
-	public PrenotazioneDto(int numPartecipanti, Utente utente, PacchettoDto pacchetto, boolean convalida) {
+	public PrenotazioneDto(int numPartecipanti, UtenteDto utente, PacchettoDto pacchetto, boolean convalida) {
 		super();
 		this.numPartecipanti = numPartecipanti;
 		this.utente = utente;
@@ -28,10 +28,10 @@ public class PrenotazioneDto {
 	public void setNumPartecipanti(int numPartecipanti) {
 		this.numPartecipanti = numPartecipanti;
 	}
-	public Utente getUtente() {
+	public UtenteDto getUtente() {
 		return utente;
 	}
-	public void setUtente(Utente utente) {
+	public void setUtente(UtenteDto utente) {
 		this.utente = utente;
 	}
 	public PacchettoDto getPacchetto() {

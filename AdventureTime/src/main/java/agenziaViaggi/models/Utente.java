@@ -1,7 +1,9 @@
 package agenziaViaggi.models;
 
+import java.time.LocalDate;
 import java.util.Objects;
-
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ private String nome, cognome, emailAddress, password;
 private int phoneNumber, promoCounter;
 private boolean admin, enabled;
 private LocalDate dataDiNascita;
+private List<Prenotazione> prenotazioni;
 	
 public Utente() {}
 
@@ -34,6 +37,7 @@ public Utente(String nome, String cognome, String emailAddress, String password,
 	this.admin = false;
 	this.enabled = true;
 	this.promoCounter = 0;
+	this.prenotazioni = new ArrayList<Prenotazione>();
 	
 }
 
@@ -117,6 +121,15 @@ public void setEnabled(boolean enabled) {
 	this.enabled = enabled;
 }
 
+public void addPrenotazione(Prenotazione p){
+	this.prenotazioni.add(p);
+}
+
+public List<Prenotazione> getPrenotazioni() {
+	return prenotazioni;
+}
+
+
 @Override
 public int hashCode() {
 	return Objects.hash(admin, cognome, emailAddress, enabled, dataDiNascita, id, nome, password, phoneNumber, promoCounter);
@@ -150,7 +163,15 @@ public boolean isValidPassword(String password) {
 		return true;
 	return false;
 }
-
-
+public void prenota(){
+	this.promoCounter++;
+}
+public double calcolaPromo(){
+	double promo=0;
+	for(Prenotazione p : prenotazioni){
+		promo += p.getPrezzoFinale();
+	}
+	return promo/prenotazioni.size();
+}
 
 }

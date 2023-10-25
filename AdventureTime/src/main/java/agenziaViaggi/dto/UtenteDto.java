@@ -1,12 +1,18 @@
 package agenziaViaggi.dto;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import agenziaViaggi.models.Prenotazione;
 
 public class UtenteDto {
 	private String nome, cognome, emailAddress, password;
 	private int phoneNumber, promoCounter;
 	private boolean admin, enabled;
 	private LocalDate dataDiNascita;
+	private List<Prenotazione> prenotazioni;
 	public UtenteDto() {
 	}
 	public UtenteDto(String nome, String cognome, String emailAddress, String password, LocalDate dataDiNascita, int phoneNumber,
@@ -21,6 +27,7 @@ public class UtenteDto {
 		this.promoCounter = promoCounter;
 		this.admin = admin;
 		this.enabled = enabled;
+		this.prenotazioni = new ArrayList<Prenotazione>();
 	}
 	public String getNome() {
 		return nome;
@@ -76,6 +83,14 @@ public class UtenteDto {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+
+	public void addPrenotazione(Prenotazione p){
+	this.prenotazioni.add(p);
+}
+
+public List<Prenotazione> getPrenotazioni() {
+	return prenotazioni;
+}
 	@Override
 	public int hashCode() {
 		return Objects.hash(admin, cognome, emailAddress, enabled, dataDiNascita, nome, password, phoneNumber, promoCounter);
@@ -98,7 +113,17 @@ public class UtenteDto {
 	public String toString() {
 		return "UtenteDto [nome=" + nome + ", cognome=" + cognome + "]";
 	}
-	
+	public void enabled() {
+		this.setEnabled(true);
+	}
+	public boolean isValidPassword(String password) {
+		if (this.password == password)
+			return true;
+		return false;
+	}
+	public void prenota(){
+		this.promoCounter++;
+	}
 	
 	
 }

@@ -1,5 +1,7 @@
 package agenziaViaggi.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import agenziaViaggi.dto.PrenotazioneDto;
 import agenziaViaggi.models.Prenotazione;
 
 import agenziaViaggi.services.PrenotazioneService;
+import agenziaViaggi.services.UtenteService;
 
 @RestController
 @RequestMapping("/prenotazioni")
@@ -21,20 +24,25 @@ public class PrenotazioneController {
 
 	@Autowired
 	private PrenotazioneService prenotazioneService;
+	@Autowired
+	private UtenteService utenteService;
 
 	@GetMapping("/{id}")
 	 public Prenotazione getPrenotazioneById(@PathVariable Long id) {
         return prenotazioneService.findById(id);
 }
 	@GetMapping("/utente{id}")
-	 public Prenotazione getPrenotazioneByUtente(@PathVariable Long id) {
-        return prenotazioneService.findByUtente(id);
+	 public List<Prenotazione> getPrenotazioneByIdUtente(@PathVariable Long id) {
+        return prenotazioneService.findByUtente(utenteService.findById(id));
+	}
+	@GetMapping("/utente{email}")
+	 public List<Prenotazione> getPrenotazioneByEmailUtente(@PathVariable String email) {
+        return prenotazioneService.findByUtente(utenteService.findByEmail(email));
 	}
 
-
 	  @PostMapping
-    public Prenotazione prenotazione(@RequestBody PrenotazioneDto dto){
-        return this.prenotazioneService.create(dto)
+    public Prenotazione nuovaPrenotazione(@RequestBody PrenotazioneDto dto){
+        return this.prenotazioneService.create(dto);
     }
 	    
 }

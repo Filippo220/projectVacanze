@@ -7,9 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import agenziaViaggi.dto.PacchettoDto;
 import agenziaViaggi.models.Pacchetto;
 import agenziaViaggi.services.PacchettoService;
 @RestController
@@ -36,8 +39,8 @@ public class PacchettoController {
         }
     }
     @PostMapping
-    public Pacchetto pacchetto(@RequestBody PacchettoDto dto){
-        return this.pacchettoService.create(dto)
+    public Pacchetto nuovoPacchetto(@RequestBody PacchettoDto dto){
+        return this.pacchettoService.create(dto);
     }
 }
 
