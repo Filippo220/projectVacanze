@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,7 @@ public class UtenteController {
     public Utente nuovoUtente(@RequestBody UtenteDto dto){
         return this.utenteService.create(dto);
     }
-    @DeleteMapping("/elimina/{userId}")
+    @DeleteMapping("/elimina/{idUtente}")
 	String eliminaUtente(@PathVariable Long id) {
 		if(utenteService.eliminaUtente(id) == true){
             return "Eliminato con successo!";
@@ -51,6 +52,7 @@ public class UtenteController {
             return "Errore";
         }
 	}
+    @PutMapping("modifica/{idUtente}")
     public Utente modifiUtente(@RequestBody Utente u, Long id){
        return this.utenteService.modificaUtente(u, id);
     }
