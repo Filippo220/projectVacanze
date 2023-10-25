@@ -2,8 +2,6 @@ package agenziaViaggi.dto;
 
 import java.util.Objects;
 
-import agenziaViaggi.models.Utente;
-
 
 public class PrenotazioneDto {
 
