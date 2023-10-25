@@ -70,6 +70,8 @@ public void setPrezzoFinale(double prezzoFinale) {
 public long getId() {
 	return id;
 }
-
+public void calcolaPrezzo() {
+	this.prezzoFinale = pacchetto.getCosto()*numPartecipanti;
+}
 
 }
