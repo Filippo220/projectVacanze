@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AdventureTimeApplication<AdventureTime>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "agenziaViaggi.AdventureTimeApplication",
+            "projectName": "AdventureTime",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

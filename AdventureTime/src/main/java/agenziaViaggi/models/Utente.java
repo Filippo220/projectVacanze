@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +24,7 @@ private String nome, cognome, emailAddress, password;
 private int phoneNumber, promoCounter;
 private boolean admin, enabled;
 private LocalDate dataDiNascita;
+@OneToMany(mappedBy = "utente")
 private List<Prenotazione> prenotazioni;
 	
 public Utente() {}

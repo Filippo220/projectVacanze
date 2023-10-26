@@ -25,11 +25,11 @@ private Utente utente;
 private Pacchetto pacchetto;
 private boolean convalida;
 private double prezzoFinale;
+
 public Prenotazione() {
 }
 
 public Prenotazione(int numPartecipanti, Utente utente, Pacchetto pacchetto, boolean convalida, double prezzoFinale) {
-	super();
 	this.numPartecipanti = numPartecipanti;
 	this.utente = utente;
 	this.pacchetto = pacchetto;
