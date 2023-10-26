@@ -45,6 +45,9 @@ public class MetaService {
         }
         return false;
     }
+    public Meta findByCitta(String citta) {
+			return this.metaRepository.findByCitta(citta);
+	}
 
     public Meta  modificaMeta(Meta met , Long id) {
         Optional<Meta> meta =metaRepository.findById(id);
