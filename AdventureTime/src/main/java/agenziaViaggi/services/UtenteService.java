@@ -7,12 +7,13 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import agenziaViaggi.dto.UtenteDto;
 import agenziaViaggi.models.Utente;
 import agenziaViaggi.repositories.UtenteRepository;
-
+	@Service
 	public class UtenteService {
 
 		@Autowired
@@ -38,7 +39,7 @@ import agenziaViaggi.repositories.UtenteRepository;
 		}
 
 		public Utente findByEmail(String email) {
-			return this.utenteRepository.findByEmail(email);
+			return this.utenteRepository.findByEmailAddress(email);
 	}
 	public boolean eliminaUtente(Long id) {
 		if(utenteRepository.existsById(id)) {

@@ -6,5 +6,5 @@ import agenziaViaggi.models.Utente;
 
 public interface UtenteRepository extends JpaRepository<Utente, Long>{
 
-    public Utente findByEmail(String email);
+    public Utente findByEmailAddress(String email);
 }
