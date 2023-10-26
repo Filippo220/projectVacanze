@@ -21,7 +21,9 @@ public class Meta {
 		this.stato = stato;
 		this.continente = continente;
 	}
-	public String getCitta() {
+	public Meta() {
+    }
+    public String getCitta() {
 		return citta;
 	}
 	public void setCitta(String citta) {
