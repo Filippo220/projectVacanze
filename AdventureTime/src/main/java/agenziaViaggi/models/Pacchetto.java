@@ -22,6 +22,7 @@ public class Pacchetto {
 	private int disponibilita;
 	private boolean assicurazione, passaporto, vaccino;
 	private LocalDate giornoPartenza, giornoRitorno;
+	private String img;
 	@ManyToOne
 	@JoinColumn(name = "id_meta")
 	private Meta meta;
@@ -29,7 +30,7 @@ public class Pacchetto {
 	
 	}
 	public Pacchetto(String nome, String descrizione, double costo, int disponibilita, boolean assicurazione,
-			boolean passaporto, boolean vaccino, LocalDate giornoPartenza, LocalDate giornoRitorno, Meta meta) {
+			boolean passaporto, boolean vaccino, LocalDate giornoPartenza, LocalDate giornoRitorno, Meta meta, String img) {
 		super();
 		this.nome = nome;
 		this.descrizione = descrizione;
@@ -41,6 +42,7 @@ public class Pacchetto {
 		this.giornoPartenza = giornoPartenza;
 		this.giornoRitorno = giornoRitorno;
 		this.meta = meta;
+		this.img = img;
 	}
 	public String getNome() {
 		return nome;
@@ -104,6 +106,12 @@ public class Pacchetto {
 	}
 	public long getId() {
 		return id;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 	

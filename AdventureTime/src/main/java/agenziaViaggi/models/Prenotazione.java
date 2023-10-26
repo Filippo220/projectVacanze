@@ -70,6 +70,58 @@ public void setPrezzoFinale(double prezzoFinale) {
 public long getId() {
 	return id;
 }
+
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + (int) (id ^ (id >>> 32));
+	result = prime * result + numPartecipanti;
+	result = prime * result + ((utente == null) ? 0 : utente.hashCode());
+	result = prime * result + ((pacchetto == null) ? 0 : pacchetto.hashCode());
+	result = prime * result + (convalida ? 1231 : 1237);
+	long temp;
+	temp = Double.doubleToLongBits(prezzoFinale);
+	result = prime * result + (int) (temp ^ (temp >>> 32));
+	return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Prenotazione other = (Prenotazione) obj;
+	if (id != other.id)
+		return false;
+	if (numPartecipanti != other.numPartecipanti)
+		return false;
+	if (utente == null) {
+		if (other.utente != null)
+			return false;
+	} else if (!utente.equals(other.utente))
+		return false;
+	if (pacchetto == null) {
+		if (other.pacchetto != null)
+			return false;
+	} else if (!pacchetto.equals(other.pacchetto))
+		return false;
+	if (convalida != other.convalida)
+		return false;
+	if (Double.doubleToLongBits(prezzoFinale) != Double.doubleToLongBits(other.prezzoFinale))
+		return false;
+	return true;
+}
+
+@Override
+public String toString() {
+	return "Prenotazione [id=" + id + ", numPartecipanti=" + numPartecipanti + ", utente=" + utente + ", pacchetto="
+			+ pacchetto + ", convalida=" + convalida + ", prezzoFinale=" + prezzoFinale + "]";
+}
+
 public void calcolaPrezzo() {
 	this.prezzoFinale = pacchetto.getCosto()*numPartecipanti;
 }
