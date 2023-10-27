@@ -1,6 +1,7 @@
-import { Mete } from './mete.model';
+import { Mete } from "./mete.model";
 
 export class Pacchetto {
+  id!: number;
   nome!: string;
   descrizione!: string;
   meta!: string;
@@ -13,6 +14,7 @@ export class Pacchetto {
   giornoRitorno!: Date;
 
   constructor(
+    id: number,
     nome: string,
     descrizione: string,
     meta: string,
@@ -24,6 +26,7 @@ export class Pacchetto {
     giornoPartenza: Date,
     giornoRitorno: Date
   ) {
+    this.id = id;
     this.nome = nome;
     this.descrizione = descrizione;
     this.meta = meta;

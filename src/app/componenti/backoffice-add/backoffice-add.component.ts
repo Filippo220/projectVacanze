@@ -40,18 +40,18 @@ export class BackofficeADDComponent implements OnInit {
 
   addPacchetto() {
     // let metaP = this.catalogoService.getMetaById(this.meta.id);
-    const nuovoPacchetto: Pacchetto = new Pacchetto(
-      this.nome,
-      this.descrizione,
-      this.meta,
-      this.costo,
-      this.disponibilita,
-      this.assicurazione,
-      this.vaccino,
-      this.passaporto,
-      this.giornoPartenza,
-      this.giornoRitorno
-    );
+    let nuovoPacchetto: Pacchetto; //= new Pacchetto
+    //   this.nome,
+    //   this.descrizione,
+    //   this.meta,
+    //   this.costo,
+    //   this.disponibilita,
+    //   this.assicurazione,
+    //   this.vaccino,
+    //   this.passaporto,
+    //   this.giornoPartenza,
+    //   this.giornoRitorno
+    // );
     this.catalogoService
       .addPacchetti(nuovoPacchetto)
       .subscribe((dati) => console.log(dati));

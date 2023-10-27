@@ -16,5 +16,9 @@ export class CatalogoComponent implements OnInit {
   }
   pacchetto: any;
 
-  getAllPacchetti() {}
+  onDeletePacchetto() {
+    this.catalogoService
+      .delPacchetto(this.pacchetto.id)
+      .subscribe((data) => console.log(data));
+  }
 }

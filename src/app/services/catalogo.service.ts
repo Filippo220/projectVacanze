@@ -8,14 +8,15 @@ import { Mete } from "../models/mete.model";
   providedIn: "root",
 })
 export class CatalogoService {
-  urlD = "http://localhost:8080/pacchetti/all";
+  urlDel = "http://localhost:8080/pacchetti/elimina";
+  urlA = "http://localhost:8080/pacchetti/all";
   urlP = "http://localhost:8080/pacchetti/add";
   urlM = "http://localhost:8080/mete/all";
   urlC = "http://localhost:8080/mete/";
   constructor(private http: HttpClient) {}
 
   getPacchetti() {
-    return this.http.get(this.urlD);
+    return this.http.get(this.urlA);
   }
 
   addPacchetti(pacchetto: Pacchetto): Observable<string> {
@@ -42,4 +43,9 @@ export class CatalogoService {
   //         reject(e);
   //       });
   //   });
+
+  delPacchetto(id: number) {
+    console.log(`${this.urlDel}/${id}`);
+    return this.http.delete(`${this.urlDel}/${id}`);
+  }
 }
