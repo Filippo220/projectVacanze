@@ -1,0 +1,10 @@
+<div class="dest">
+    <div class="box" *ngFor="let i of continenti index as o" [routerLink]="">
+        <div class="img">
+            <video [src]="continenti[o].img" autoplay="true" loop></video>
+        </div>
+        <div class="cont">
+            <h2>{{continenti[o].nome}}</h2>
+        </div>
+    </div>
+</div>
