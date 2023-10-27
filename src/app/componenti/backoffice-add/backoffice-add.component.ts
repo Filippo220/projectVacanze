@@ -1,13 +1,13 @@
-import { CatalogoService } from 'src/app/services/catalogo.service';
-import { Component, OnInit } from '@angular/core';
-import { Mete } from 'src/app/models/mete.model';
-import { NgForm } from '@angular/forms';
-import { Pacchetto } from 'src/app/models/pacchetto.model';
+import { CatalogoService } from "src/app/services/catalogo.service";
+import { Component, OnInit } from "@angular/core";
+import { Mete } from "src/app/models/mete.model";
+import { NgForm } from "@angular/forms";
+import { Pacchetto } from "src/app/models/pacchetto.model";
 
 @Component({
-  selector: 'app-backoffice-add',
-  templateUrl: './backoffice-add.component.html',
-  styleUrls: ['./backoffice-add.component.css'],
+  selector: "app-backoffice-add",
+  templateUrl: "./backoffice-add.component.html",
+  styleUrls: ["./backoffice-add.component.css"],
 })
 export class BackofficeADDComponent implements OnInit {
   nome!: string;
