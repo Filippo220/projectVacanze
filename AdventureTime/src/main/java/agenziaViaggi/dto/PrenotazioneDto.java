@@ -4,7 +4,7 @@ import java.util.Objects;
 
 
 public class PrenotazioneDto {
-
+	private Long id;
 	private int numPartecipanti;
 	private UtenteDto utente;
 	private PacchettoDto pacchetto;
@@ -12,14 +12,15 @@ public class PrenotazioneDto {
 	private double prezzoFinale;
 	public PrenotazioneDto() {
 	}
-	public PrenotazioneDto(int numPartecipanti, UtenteDto utente, PacchettoDto pacchetto, boolean convalida) {
-		super();
+	public PrenotazioneDto(Long id, int numPartecipanti, UtenteDto utente, PacchettoDto pacchetto, boolean convalida) {
+		this.id = id;
 		this.numPartecipanti = numPartecipanti;
 		this.utente = utente;
 		this.pacchetto = pacchetto;
 		this.convalida = convalida;
 		this.prezzoFinale = pacchetto.getCosto()*numPartecipanti;
 	}
+	
 	public int getNumPartecipanti() {
 		return numPartecipanti;
 	}
@@ -71,6 +72,12 @@ public class PrenotazioneDto {
 	}
 public void calcolaPrezzo(double prezzo, int numPartecipanti) {
 	this.prezzoFinale = prezzo*numPartecipanti; 
+}
+public Long getId() {
+	return id;
+}
+public void setId(Long id) {
+	this.id = id;
 }
 
 }

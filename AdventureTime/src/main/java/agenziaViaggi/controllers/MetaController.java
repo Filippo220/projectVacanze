@@ -22,7 +22,7 @@ import agenziaViaggi.services.MetaService;
 
 
 @RestController
-@RequestMapping ("/Mete")
+@RequestMapping ("/mete")
 public class MetaController {
 
    @Autowired
@@ -32,7 +32,10 @@ public class MetaController {
     public List<Meta> findAllMete() {
         return metaService.findAll();
     }
-
+     @GetMapping("/{citta}")
+    public Meta findByCitta(@PathVariable String citta) {
+        return metaService.findByCitta(citta);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Meta> findMetaById(@PathVariable String id) {
         try {

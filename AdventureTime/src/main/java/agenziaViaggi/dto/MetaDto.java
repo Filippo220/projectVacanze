@@ -4,13 +4,16 @@ import java.util.Objects;
 
 public class MetaDto {
 	private String citta, stato, continente;
-	public MetaDto(String citta, String stato, String continente) {
+	private Long id;
+	public MetaDto(Long id, String citta, String stato, String continente) {
+		this.id = id;
 		this.citta = citta;
 		this.stato = stato;
 		this.continente = continente;
 	}
 	public MetaDto() {
 	}
+	
 	public String getCitta() {
 		return citta;
 	}
@@ -50,6 +53,12 @@ public class MetaDto {
 	@Override
 	public String toString() {
 		return "Meta [città=" + citta + ", stato=" + stato + ", continente=" + continente + "]";
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

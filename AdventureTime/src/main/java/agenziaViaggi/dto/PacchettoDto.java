@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class PacchettoDto {
-	
+	private Long id;
 	private String nome, descrizione;
 	private double costo;
 	private int disponibilita;
@@ -14,9 +14,9 @@ public class PacchettoDto {
 	public PacchettoDto() {
 		super();
 	}
-	public PacchettoDto(String nome, String descrizione, double costo, int disponibilita, boolean assicurazione,
+	public PacchettoDto(Long id, String nome, String descrizione, double costo, int disponibilita, boolean assicurazione,
 			boolean passaporto, boolean vaccino, LocalDate giornoPartenza, LocalDate giornoRitorno, MetaDto meta) {
-		super();
+		this.id = id;
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.costo = costo;
@@ -28,6 +28,7 @@ public class PacchettoDto {
 		this.giornoRitorno = giornoRitorno;
 		this.meta = meta;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -115,6 +116,12 @@ public class PacchettoDto {
 				+ disponibilita + ", assicurazione=" + assicurazione + ", passaporto=" + passaporto + ", vaccino="
 				+ vaccino + ", giornoPartenza=" + giornoPartenza + ", giornoRitorno=" + giornoRitorno + ", meta=" + meta
 				+ "]";
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	
