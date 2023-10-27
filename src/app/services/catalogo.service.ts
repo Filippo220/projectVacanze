@@ -23,9 +23,9 @@ export class CatalogoService {
     return this.http.post(this.urlP, pacchetto, { responseType: "text" });
   }
 
-  getMete() {
-    return this.http.get(this.urlM);
-  }
+  // getMete() {
+  //   return this.http.get(this.urlM);
+  // }
 
   // getMetaById(id: any): Promise<Mete> {
   //   return new Promise((resolve, reject) => {
