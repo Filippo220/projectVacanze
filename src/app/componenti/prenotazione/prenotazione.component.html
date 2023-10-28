@@ -1,0 +1,11 @@
+<div class="form">
+    <form #aggiuntaPrenotazione="ngForm" (ngSubmit)="onAddPrenotazione()">
+        <label>Numero Partecipanti</label>
+        <input type="number" name="numPartecipanti" [(ngModel)]="numPartecipanti" required>
+        <label>Nome Utente</label>
+        <input type="text" name="nomeUtente" [(ngModel)]="nomeUtente" required>
+        <label for="mete">Pacchetto</label>
+        <input type="text" name="pacchetto" id="mete" [(ngModel)]="pacchetto.nome">
+        <button type="submit">Conferma</button>
+    </form>
+</div>

@@ -14,6 +14,7 @@ import { LoginBackOfficeComponent } from './componenti/login-back-office/login-b
 import { DestinazioniComponent } from './componenti/destinazioni/destinazioni.component';
 import { HomeComponent } from './componenti/home/home.component';
 import { BackofficeADDComponent } from './componenti/backoffice-add/backoffice-add.component';
+import { PrenotazioneComponent } from './componenti/prenotazione/prenotazione.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BackofficeADDComponent } from './componenti/backoffice-add/backoffice-a
     DestinazioniComponent,
     HomeComponent,
     BackofficeADDComponent,
+    PrenotazioneComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Pacchetto } from "src/app/models/pacchetto.model";
+import { Prenotazione } from "src/app/models/prenotazione.model";
 import { CatalogoService } from "src/app/services/catalogo.service";
+import { PrenotazioneService } from "src/app/services/prenotazione.service";
 
 @Component({
   selector: "app-catalogo",
@@ -15,10 +18,4 @@ export class CatalogoComponent implements OnInit {
     console.log(this.pacchetto);
   }
   pacchetto: any;
-
-  onDeletePacchetto() {
-    this.catalogoService
-      .delPacchetto(this.pacchetto.id)
-      .subscribe((data) => console.log(data));
-  }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { Mete } from "src/app/models/mete.model";
 import { NgForm } from "@angular/forms";
 import { Pacchetto } from "src/app/models/pacchetto.model";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-backoffice-add",
@@ -23,7 +24,10 @@ export class BackofficeADDComponent implements OnInit {
   img!: string;
   pacchetti: Pacchetto[] = [];
   mete: any;
-  constructor(private catalogoService: CatalogoService) {}
+  constructor(
+    private catalogoService: CatalogoService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     // this.mete = this.catalogoService
     //   .getMete()
@@ -40,20 +44,21 @@ export class BackofficeADDComponent implements OnInit {
 
   addPacchetto() {
     // let metaP = this.catalogoService.getMetaById(this.meta.id);
-    let nuovoPacchetto: Pacchetto; //= new Pacchetto
-    //   this.nome,
-    //   this.descrizione,
-    //   this.meta,
-    //   this.costo,
-    //   this.disponibilita,
-    //   this.assicurazione,
-    //   this.vaccino,
-    //   this.passaporto,
-    //   this.giornoPartenza,
-    //   this.giornoRitorno
-    // );
+    let nuovoPacchetto: Pacchetto = new Pacchetto(
+      this.nome,
+      this.descrizione,
+      this.meta,
+      this.costo,
+      this.disponibilita,
+      this.assicurazione,
+      this.vaccino,
+      this.passaporto,
+      this.giornoPartenza,
+      this.giornoRitorno
+    );
     this.catalogoService
       .addPacchetti(nuovoPacchetto)
       .subscribe((dati) => console.log(dati));
+    this.router.navigateByUrl("catalogo");
   }
 }
